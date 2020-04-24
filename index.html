@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="wasm_exec.js"></script>
+    <script>
+        window.onload = function() {
+            // window.updateDOM = (text)=>{
+            //     document.getElementById("wasm").innerText += text;
+            // }
+
+            const go = new Go();
+                fetch("main.wasm")
+                .then(res => res.arrayBuffer())
+                .then(res => {
+                    WebAssembly.instantiate(res, go.importObject).then(result => {
+                    go.run(result.instance);
+                })
+            })
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="wasm" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+</html>
