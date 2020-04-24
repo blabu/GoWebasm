@@ -1,4 +1,4 @@
-###Test project golang + webasm
+##Test project golang + webasm
 Requirements: 
 1. Golang version 1.13 or above 
 2. Specified GOOS=js and GOARCH=wasm in your build environment
